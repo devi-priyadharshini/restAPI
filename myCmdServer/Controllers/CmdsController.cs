@@ -84,6 +84,9 @@ namespace myCmdServer.Controllers
         public ActionResult UpdateCommand(int id, CmdUpdateDto cmdUpdateDto)
         {
             Command cmdDB = _repo.GetCommandByID(id);
+            if (cmdDB == null)
+                return NotFound();
+
             _mapper.Map(cmdUpdateDto, cmdDB);
 
             _repo.UpdateCommand(cmdDB); // SQL might not have any implementation. But, we are coding to interface. Hence requires call...

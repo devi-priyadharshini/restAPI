@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using myCmdServer.Data;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace myCmdServer
 {
@@ -34,6 +35,7 @@ namespace myCmdServer
             // SQLServer Database user created, database connection string added in app settings, DbContext is created and configured as services passing the connection string,,,j
             services.AddDbContext<CmdDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("myCmdServerConn")));
             services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // register service...
             services.AddScoped<IMyCmdServerRepo, SqlMyCmdServerRepo>();

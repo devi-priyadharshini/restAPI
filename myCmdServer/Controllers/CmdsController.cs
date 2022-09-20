@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using myCmdServer.Models;
 using myCmdServer.Data;
+using myCmdServer.Dtos;
+
+using AutoMapper;
 
 namespace myCmdServer.Controllers
 {
@@ -31,24 +34,31 @@ namespace myCmdServer.Controllers
         #endregion
 
         IMyCmdServerRepo _repo;
+        IMapper _mapper;
 
-        public CmdsController(IMyCmdServerRepo repo)
+        public CmdsController(IMyCmdServerRepo repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
         // GET /api/cmds
         [HttpGet] // HTTPGET tells that this method should response to controllers api's get request
         public ActionResult<IEnumerable<Command>> GetAllCommands()
         {
-            return Ok(_repo.GetCommands());
+            return Ok(_mapper.Map<IEnumerable<CmdReadDto>>(_repo.GetCommands()));
         }
 
         // GET /api/cmds/{id}
         [HttpGet("{id}")] // appends {id} to the controller's Uri string. This allow to handle Uri = /api/Cmds/{id}
-        public ActionResult<Command> GetCommandByID(int id)
+        public ActionResult<CmdReadDto> GetCommandByID(int id)
         {
-            return Ok(_repo.GetCommandByID(id));
+            var cmd = _repo.GetCommandByID(id);
+            if (cmd == null)
+                return NotFound();
+
+            CmdReadDto cmdDto = _mapper.Map<CmdReadDto>(cmd);
+            return Ok(cmdDto);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace myCmdServer
         {
             services.AddControllers();
 
-            // 
+            // register service...
             services.AddScoped<IMyCmdServerRepo, MockMyCmdServerRepo>();
         }
 

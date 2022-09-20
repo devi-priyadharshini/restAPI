@@ -4,7 +4,7 @@ using myCmdServer.Models;
 namespace myCmdServer.Data
 {
 
-    public class MockMyCmdServerRepo : IMyCmdServerRepo
+    public class MockMyCmdServerRepo
     {
         private Command mockCommand = new Command()
         {

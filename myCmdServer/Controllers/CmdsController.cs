@@ -51,6 +51,7 @@ namespace myCmdServer.Controllers
 
         // GET /api/cmds/{id}
         [HttpGet("{id}")] // appends {id} to the controller's Uri string. This allow to handle Uri = /api/Cmds/{id}
+        [HttpGet("{id}", Name = "GetCommandById")] // Name attribute used to redirect purpose. TODO: find more
         public ActionResult<CmdReadDto> GetCommandByID(int id)
         {
             var cmd = _repo.GetCommandByID(id);
@@ -59,6 +60,24 @@ namespace myCmdServer.Controllers
 
             CmdReadDto cmdDto = _mapper.Map<CmdReadDto>(cmd);
             return Ok(cmdDto);
+        }
+
+        /// <summary>
+        /// API Endpoint for HTTP Post - create new cmd.
+        /// </summary>
+        /// <param name="cmdCreateDto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult<CmdCreateDto> CreateCommand(CmdCreateDto cmdCreateDto) // Find how Dto object is created from request body
+        {
+            var cmd = _mapper.Map<Command>(cmdCreateDto);
+            _repo.CreateCommand(cmd);
+            _repo.SaveChanges();
+
+            // REST Spec for POST : return Status Code 201 with the URI where to find the resource created.
+
+            var cmdReadDto = _mapper.Map<CmdReadDto>(cmd);
+            return CreatedAtRoute(nameof(GetCommandByID), new { Id = cmd.Id }, cmdReadDto); // Find more about this API
         }
     }
 }

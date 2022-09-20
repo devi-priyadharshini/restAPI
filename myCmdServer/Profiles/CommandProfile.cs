@@ -10,7 +10,14 @@ namespace myCmdServer.Profiles
     {
         public CmdsProfile()
         {
+            // Maps Command object to its equivalent CmdReadDto
+            // HTTP GET
             CreateMap<Command, CmdReadDto>();
+
+            // Maps CmdCreateDto to Command object
+            // HTTP Post
+            CreateMap<CmdCreateDto, Command>();
+
         }
     }
 }

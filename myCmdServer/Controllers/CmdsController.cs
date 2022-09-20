@@ -117,5 +117,25 @@ namespace myCmdServer.Controllers
             return NoContent();
 
         }
+
+
+        /// <summary>
+        /// api/cmds/id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCmd(int id)
+        {
+            Command cmdDB = _repo.GetCommandByID(id);
+            if (cmdDB == null)
+                return NotFound();
+
+            _repo.DeleteCommand(cmdDB);
+            _repo.SaveChanges();
+
+            return NoContent();
+
+        }
     }
 }

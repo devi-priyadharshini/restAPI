@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using myCmdServer.Data;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace myCmdServer
 {
@@ -34,7 +36,11 @@ namespace myCmdServer
 
             // SQLServer Database user created, database connection string added in app settings, DbContext is created and configured as services passing the connection string,,,j
             services.AddDbContext<CmdDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("myCmdServerConn")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s =>
+            {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // register service...

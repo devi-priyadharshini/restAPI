@@ -18,6 +18,8 @@ namespace myCmdServer.Profiles
             // HTTP Post
             CreateMap<CmdCreateDto, Command>();
 
+            CreateMap<Command, CmdUpdateDto>();
+
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using myCmdServer.Models;
 using myCmdServer.Data;
 using myCmdServer.Dtos;
-
+using Microsoft.AspNetCore.JsonPatch;
 using AutoMapper;
 
 namespace myCmdServer.Controllers
@@ -93,6 +93,29 @@ namespace myCmdServer.Controllers
             _repo.SaveChanges();
 
             return NoContent(); // 204 No COntent
+        }
+
+
+        //PATCh api/cmds/{id}
+        [HttpPatch("{id}")]
+        public ActionResult PartialCmdUpdate(int id, JsonPatchDocument<CmdUpdateDto> patchDoc)
+        {
+            Command cmdDB = _repo.GetCommandByID(id);
+            if (cmdDB == null)
+                return NotFound();
+
+            var cmdToPatch = _mapper.Map<CmdUpdateDto>(cmdDB);
+            patchDoc.ApplyTo(cmdToPatch, ModelState);
+
+            if (!TryValidateModel(cmdToPatch))
+                return ValidationProblem(ModelState);
+
+            _mapper.Map(cmdToPatch, cmdDB);
+            _repo.UpdateCommand(cmdDB);
+            _repo.SaveChanges();
+
+            return NoContent();
+
         }
     }
 }

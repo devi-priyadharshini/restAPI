@@ -16,5 +16,7 @@ namespace myCmdServer.Data
         Command GetCommandByID(int id);
 
         void CreateCommand(Command cmd);
+
+        void UpdateCommand(Command cmd);
     }
 }

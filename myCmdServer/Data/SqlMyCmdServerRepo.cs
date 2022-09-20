@@ -32,6 +32,12 @@ namespace myCmdServer.Data
                 _context.Commands.Add(cmd);
         }
 
+        public void UpdateCommand(Command cmd)
+        {
+
+
+        }
+
         /// <summary>
         /// All the dbContext changes are reflected in DB only when we call SaveChanges
         /// </summary>

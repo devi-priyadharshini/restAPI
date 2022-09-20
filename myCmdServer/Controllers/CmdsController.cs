@@ -50,7 +50,7 @@ namespace myCmdServer.Controllers
         }
 
         // GET /api/cmds/{id}
-        [HttpGet("{id}")] // appends {id} to the controller's Uri string. This allow to handle Uri = /api/Cmds/{id}
+        //[HttpGet("{id}")] // appends {id} to the controller's Uri string. This allow to handle Uri = /api/Cmds/{id}
         [HttpGet("{id}", Name = "GetCommandById")] // Name attribute used to redirect purpose. TODO: find more
         public ActionResult<CmdReadDto> GetCommandByID(int id)
         {
@@ -78,6 +78,18 @@ namespace myCmdServer.Controllers
 
             var cmdReadDto = _mapper.Map<CmdReadDto>(cmd);
             return CreatedAtRoute(nameof(GetCommandByID), new { Id = cmd.Id }, cmdReadDto); // Find more about this API
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateCommand(int id, CmdUpdateDto cmdUpdateDto)
+        {
+            Command cmdDB = _repo.GetCommandByID(id);
+            _mapper.Map(cmdUpdateDto, cmdDB);
+
+            _repo.UpdateCommand(cmdDB); // SQL might not have any implementation. But, we are coding to interface. Hence requires call...
+            _repo.SaveChanges();
+
+            return NoContent(); // 204 No COntent
         }
     }
 }

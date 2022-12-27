@@ -28,7 +28,7 @@ HTTP Status Codes:
 RESTFul Web Service - Web Services which has REST constraints implemented. 
 
     
-#### Projects:
+#### REST Projects included in this repo:
 
 1. Rest API using .Net Core
-   Created a REST API endpoints using .Net core - "https://www.youtube.com/watch?v=fmvcAzHpsk8".
+   Created a REST API endpoints using .Net core by following the tutorial -"https://www.youtube.com/watch?v=fmvcAzHpsk8".

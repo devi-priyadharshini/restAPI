@@ -1,7 +1,11 @@
 # REST, RESTApi, RESTFul Web Service
 
 #### REST - REpresentational State Transfer.
-       Transfer of state of a resource through a representation(XML, JSON etc..)
+
+       Transfer of state of a resource through a representation.
+       Representation is not the resoure itself. Representation - format how resources data/information are transferred between server and clients.
+       Representation format - .csv, html document, XML, JSON etc...
+       Resource based(Nouns) and not Action based(SOAP API - Verbs).
        
        An architecture style or one of the way for communication of 2 or more services/systems to manipulate a resource available over the internet.
        REST is based on HTTP.
@@ -18,15 +22,14 @@ HTTP Status Codes:
 ![image](https://user-images.githubusercontent.com/21195523/209651892-e99b7302-ae6d-4339-bdf4-20bd35c36ddb.png)
 
 ### RESTApi - API which meets the 6 architetural constraints.
-1. Uniform Interface
-2. Client-Server
+1. Uniform Interface - defines interface between client and server. 
+2. Client-Server - 
 3. Stateless
 4. Cacheable
 5. Layered system
 6. Code on Demand(Optional)
 
 RESTFul Web Service - Web Services which has REST constraints implemented. 
-
     
 #### REST Projects included in this repo:
 

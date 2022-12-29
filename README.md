@@ -1,8 +1,8 @@
 # REST, RESTApi, RESTFul Web Service
 
-WWW and internet are different.
-Hypertext - Visible Text of an URI 
-HyperMedia - linking text with any format of document, - audio, video etc
+       WWW and internet are different.
+       Hypertext - Visible Text of an URI
+       HyperMedia - linking text with any format of document, - audio, video etc
 
 Service: A piece of code/software which is executed on request. Service runs in a single machine
 Web Service: Service available on the internet and are avaialble for clients to request this service.

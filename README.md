@@ -4,7 +4,7 @@
        Hypertext - Visible Text of an URI
        HyperMedia - linking text with any format of document, - audio, video etc
 
-Service: A piece of code/software which is executed on request. Service runs in a single machine
+ Service: A piece of code/software which is executed on request. Service runs in a single machine
 Web Service: Service available on the internet and are avaialble for clients to request this service.
 API:  API is an operation that service exposes for clients can use/run. This reduces the reinventing of wheels of doing the same operation by clients.
 Web API: API available on the web.
